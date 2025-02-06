@@ -34,21 +34,15 @@ class Carnivore extends Animal {
 
     Animal.alive.forEach((animal) => {
       if (animal === target) {
-        if (animal.hidden !== true) {
-          animal.health -= BITE_POWER;
+        if (animal instanceof Herbivore) {
+          if (animal.hidden === false) {
+            animal.health -= BITE_POWER;
 
-          if (animal.health <= 0) {
-            Animal.alive = Animal.alive.filter((a) => a.health > 0);
+            if (animal.health <= 0) {
+              Animal.alive = Animal.alive.filter((a) => a.health > 0);
+            }
           }
         }
-
-        // if (animal.hidden !== true && animal instanceof Herbivore) {
-        //   animal.health -= BITE_POWER;
-
-        //   if (animal.health <= 0) {
-        //     Animal.alive = Animal.alive.filter((a) => a.health > 0);
-        //   }
-        // }
       }
     });
   }
